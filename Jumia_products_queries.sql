@@ -1,7 +1,7 @@
 /* AVG current_price,old_price,discount_rating */
 SELECT
-    ROUND(AVG(current_price_max)::numeric, 2) AS current_price,
-    ROUND(AVG(old_price_max)::numeric, 2) AS old_price,
+    ROUND(AVG(current_price_mid)::numeric, 2) AS current_price,
+    ROUND(AVG(old_price_mid)::numeric, 2) AS old_price,
     ROUND(AVG(discount)::numeric, 2) AS discount,
     ROUND(AVG(rating)::numeric, 2) AS average_rating
 FROM products;
@@ -15,20 +15,20 @@ FROM products;
 /* Products most and least expensive */ 
 (SELECT 
     product, 
-    current_price_max, 
+    current_price_mid, 
     rating,
     'Most_expensive' as ranking_group
  FROM products
- ORDER BY current_price_max DESC
+ ORDER BY current_price_mid DESC
  LIMIT 1)
 UNION ALL
 (SELECT 
     product, 
-    current_price_max, 
+    current_price_mid, 
     rating,
     'Cheapest' as ranking_group
  FROM products
- ORDER BY current_price_max ASC
+ ORDER BY current_price_mid ASC
  LIMIT 1);
 
 /* correlation between highly rated products and reviews" */
